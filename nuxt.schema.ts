@@ -68,6 +68,12 @@ export default defineNuxtSchema({
          * Instagram page url
          * @example https://www.youtube.com/@NuxtLabs
          * @studioIcon simple-icons:youtube
+         */        
+        tiktok: '',
+        /**
+         * TikTok page url
+         * @example https://www.tiktok.com/@tiktok
+         * @studioIcon simple-icons:tiktok
          */
         youtube: '',
         /**
@@ -133,7 +139,10 @@ export default defineNuxtSchema({
          * Boolean to disable or use the `Logo.vue` component.
          *
          * String to be used as a name of a component.
+         * 
+         * Object that sets the light and dark logos.
          *
+         * @type {boolean|string|{dark: string, light: string}}
          * @example 'MyLogo'
          * @studioInput boolean
          */
@@ -213,8 +222,18 @@ export default defineNuxtSchema({
                   type: 'string',
                   description: 'URL when clicking the link'
                 },
-                text: { type: 'string', description: 'Text of the link' },
-                target: { type: 'string', description: 'Target attribute of the link' }
+                text: {
+                  type: 'string',
+                  description: 'Text of the link'
+                },
+                target: {
+                  type: 'string',
+                  description: 'Target attribute of the link'
+                },
+                rel: {
+                  type: 'string',
+                  description: 'Rel attribute of the link'
+                }
               }
             }
           }
@@ -233,12 +252,22 @@ export default defineNuxtSchema({
               type: 'object',
               required: ['icon', 'href'],
               properties: {
-                icon: { type: 'string', description: 'Icon name' },
+                icon: {
+                  type: 'string',
+                  description: 'Icon name'
+                },
                 href: {
                   type: 'string',
                   description: 'Link when clicking on the icon'
                 },
-                label: { type: 'string', description: 'Label of the icon' }
+                label: {
+                  type: 'string',
+                  description: 'Label of the icon'
+                },
+                rel: {
+                  type: 'string',
+                  description: 'Rel attribute of the link'
+                }
               }
             }
           }
@@ -257,6 +286,12 @@ export default defineNuxtSchema({
        * @studioIcon simple-icons:github
        */
       github: {
+        /**
+         * Base URL
+         *
+         * You can use this to link to GitHub Enterprise.
+         */
+        baseUrl: 'https://github.com',
         /**
          * Directory
          *

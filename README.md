@@ -67,9 +67,10 @@ defineNuxtConfig({
 ## Contributing 🙏
 
 1. Clone this repository
-2. Install dependencies using `yarn install` or `npm install`
-3. Run `npm run prepare` to generate type stubs.
-4. Use `npm run dev` to start [playground](./playground) in development mode.
+2. Install dependencies using `pnpm install --frozen-lockfile`
+3. Run `pnpm run prepare` to generate type stubs.
+4. Use `pnpm run dev` to start [default starter](./.starters/default). You can edit the module because pnpm workspace links it with the default starter.
+5. Do not commit any change in `.starters/default` since its your playground.
 
 ## License 📎
 
@@ -86,7 +87,7 @@ defineNuxtConfig({
 [license-href]: https://github.com/nuxt-themes/docus/blob/main/LICENSE
 
 [nuxt-studio-src]: https://img.shields.io/badge/Open%20in%20Nuxt%20Studio-18181B?&logo=nuxt.js&logoColor=3BB5EC
-[nuxt-studio-href]: https://nuxt.studio/templates/docus
+[nuxt-studio-href]: https://nuxt.studio/themes/docus
 
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?&logo=nuxt.js
 [nuxt-href]: https://nuxt.com

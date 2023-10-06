@@ -48,7 +48,7 @@ export default defineTheme({
       400: '#64C7FF',
       500: '#1AADFF',
       600: '#0069A6',
-      700: '#003351',
+      700: '#014267',
       800: '#002235',
       900: '#00131D'
     },
@@ -65,17 +65,30 @@ export default defineTheme({
       900: '#00190F'
     },
     yellow: {
-      50: '#FFFDEA',
-      100: '#FFF8CC',
-      200: '#FEF5A4',
-      300: '#FFEF8A',
-      400: '#FFE53C',
-      500: '#EECF00',
-      600: '#C2A905',
-      700: '#6B5D02',
-      800: '#282300',
-      900: '#1A1700'
+      50: '#FFFCEE',
+      100: '#FFF6D3',
+      200: '#FFF0B1',
+      300: '#FFE372',
+      400: '#FFDC4E',
+      500: '#FBCA05',
+      600: '#CBA408',
+      700: '#614E02',
+      800: '#292100',
+      900: '#1B1500'
+    },
+    shadow: {
+      initial: '{color.gray.400}',
+      dark: '{color.gray.800}'
     }
+  },
+  shadow: {
+    xs: '0px 1px 2px 0px {color.shadow}',
+    sm: '0px 1px 3px 0px {color.shadow}, 0px 1px 2px -1px {color.shadow}',
+    md: '0px 4px 6px -1px {color.shadow}, 0px 2px 4px -2px {color.shadow}',
+    lg: '0px 10px 15px -3px {color.shadow}, 0px 4px 6px -4px {color.shadow}',
+    xl: '0px 20px 25px -5px {color.shadow}, 0px 8px 10px -6px {color.shadow}',
+    '2xl': '0px 25px 50px -12px {color.shadow}',
+    none: '0px 0px 0px 0px transparent'
   },
   docus: {
     $schema: {
@@ -93,9 +106,28 @@ export default defineTheme({
         initial: '{color.gray.800}',
         dark: '{color.gray.200}'
       },
-      fontFamily: '{font.sans}',
+      fontFamily: '{font.sans}'
     },
-    header: { height: '64px' },
+    header: {
+      height: '64px',
+      logo: {
+        height: {
+          initial: '{space.6}',
+          sm: '{space.7}'
+        }
+      },
+      title: {
+        fontSize: '{fontSize.2xl}', 
+        fontWeight: '{fontWeight.bold}', 
+        color: {
+          static: {
+            initial: '{color.gray.900}', 
+            dark: '{color.gray.100}', 
+          },
+          hover: '{color.primary.500}', 
+        }
+      }
+    },
     footer: { height: { initial: '145px', sm: '100px' }, padding: '{space.4} 0' },
     readableLine: '78ch',
     loadingBar: {
@@ -103,6 +135,56 @@ export default defineTheme({
       gradientColorStop1: '#00dc82',
       gradientColorStop2: '#34cdfe',
       gradientColorStop3: '#0047e1'
+    },
+    search: {
+      backdropFilter: 'blur(24px)',
+      input: {
+        borderRadius: '{radii.2xs}',
+        borderWidth: '1px',
+        borderStyle: 'solid',
+        borderColor: {
+          initial: '{color.gray.200}',
+          dark: 'transparent'
+        },
+        fontSize: '{fontSize.sm}',
+        gap: '{space.2}',
+        padding: '{space.2} {space.4}',
+        backgroundColor: {
+          initial: '{color.gray.200}',
+          dark: '{color.gray.800}'
+        },
+      },
+      results: {
+        window: {
+          marginX: {
+            initial: '0',
+            sm: '{space.4}'
+          },
+          borderRadius: {
+            initial: 'none',
+            sm: '{radii.xs}'
+          },
+          marginTop: {
+            initial: '0',
+            sm: '20vh'
+          },
+          maxWidth: '640px',
+          maxHeight: {
+            initial: '100%',
+            sm: '320px'
+          },
+        },
+        selected: {
+          backgroundColor: {
+            initial: '{color.gray.300}',
+            dark: '{color.gray.700}'
+          },
+        },
+        highlight: {
+          color: 'white',
+          backgroundColor: '{color.primary.500}'
+        }
+      }
     }
   },
   typography: {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const socials = ['twitter', 'facebook', 'instagram', 'youtube', 'github', 'medium']
+const socials = ['twitter', 'facebook', 'instagram', 'tiktok', 'youtube', 'github', 'medium']
 
 const { config } = useDocus()
 
@@ -10,9 +10,10 @@ const icons = computed<any>(() => {
         return value
       } else if (typeof value === 'string' && value && socials.includes(key)) {
         return {
-          href: `https://${key}.com/${value}`,
+          href: /^https?:\/\//.test(value) ? value : `https://${key}.com/${value}`,
           icon: `fa-brands:${key}`,
-          label: value
+          label: value,
+          rel: 'noopener noreferrer'
         }
       } else {
         return null
@@ -26,13 +27,16 @@ const icons = computed<any>(() => {
   <NuxtLink
     v-for="icon in icons"
     :key="icon.label"
-    rel="noopener noreferrer"
+    :rel="icon.rel"
     :title="icon.label"
     :aria-label="icon.label"
     :href="icon.href"
     target="_blank"
   >
-    <Icon v-if="icon.icon" :name="icon.icon" />
+    <Icon
+      v-if="icon.icon"
+      :name="icon.icon"
+    />
   </NuxtLink>
 </template>
 

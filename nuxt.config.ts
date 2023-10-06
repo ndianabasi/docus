@@ -12,8 +12,40 @@ const envModules = {
   typography: process?.env?.THEME_DEV_TYPOGRAPHY_PATH || '@nuxt-themes/typography'
 }
 
+const updateModule = defineNuxtModule({
+  meta: {
+    name: '@nuxt-themes/docus'
+  },
+  setup (_, nuxt) {
+    if (nuxt.options.dev) {
+      $fetch('https://registry.npmjs.org/@nuxt-themes/docus/latest').then((release) => {
+        if (release.version > version) {
+          logger.info(`A new version of Docus (v${release.version}) is available: https://github.com/nuxt-themes/docus/releases/latest`)
+        }
+      }).catch(() => {})
+    }
+  }
+})
+
+// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  extends: [envModules.typography, envModules.elements],
+  routeRules: {
+    '/api/search': {
+      prerender: true,
+      cache: true
+    }
+  },
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'en'
+      }
+    }
+  },
+  extends: [
+    envModules.typography,
+    envModules.elements
+  ],
   modules: [
     envModules.tokens,
     envModules.studio,
@@ -22,20 +54,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-config-schema',
     resolve('./app/module'),
-    defineNuxtModule({
-      meta: {
-        name: '@nuxt-themes/docus'
-      },
-      setup (_, nuxt) {
-        if (nuxt.options.dev) {
-          $fetch('https://registry.npmjs.org/@nuxt-themes/docus/latest').then((release) => {
-            if (release.version > version) {
-              logger.info(`A new version of Docus (v${release.version}) is available: https://github.com/nuxt-themes/docus/releases/latest`)
-            }
-          }).catch((_) => {})
-        }
-      }
-    })
+    updateModule as any
   ],
   css: [
     resolve('./assets/css/main.css')
@@ -71,5 +90,17 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
     dataValue: 'theme'
-  }
+  },
+  experimental: {
+    inlineSSRStyles: false
+  },
+  typescript: {
+    includeWorkspace: true
+  },
+  nitro: {
+    prerender: {
+      ignore: ['/__pinceau_tokens_config.json', '/__pinceau_tokens_schema.json'],
+      routes: ['/opensearch.xml']
+    }
+  },
 })
